@@ -44,15 +44,15 @@ function Person(name, age) {
   this.age = age;
   this.stomach = [];
 }
-Person.prototype.eat = function (food) {
-  if (this.stomach.length < 10) this.stomach.push(food);
-};
-Person.prototype.poop = function () {
+Person.prototype.eat = function(food) {
+  if(this.stomach.length < 10) this.stomach.push(food);
+}
+Person.prototype.poop = function() {
   this.stomach = [];
-};
-Person.prototype.toString = function () {
+}
+Person.prototype.toString = function() {
   return `${this.name}, ${this.age}`;
-};
+}
 
 /*
   TASK 2
@@ -73,22 +73,20 @@ function Car(model, milesPerGallon) {
   this.milesPerGallon = milesPerGallon;
   this.tank = 0;
   this.odometer = 0;
-};
-Car.prototype.fill = function (gallons) {
+}
+Car.prototype.fill = function(gallons) {
   this.tank += gallons;
-};
-Car.prototype.drive = function (distance) {
-  const milesLeft = this.tank * this.milesPerGallon;
-  if (!(milesLeft <= distance))  {
-    this.odometer += distance;
-    this.tank -= (distance/this.milesPerGallon);
-  } else {
+}
+Car.prototype.drive = function(distance) {
+  const milesLeft = (this.milesPerGallon * this.tank);
+  if(milesLeft <= distance) {
     this.odometer += milesLeft;
     this.tank = 0;
-    return `I ran out of fuel at ${this.odometer} miles`;
+    return `I ran out of fuel at ${this.odometer} miles!`
   }
+  this.odometer += distance
+  this.tank -= (distance / this.milesPerGallon);
 }
-
 /*
   TASK 3
     - Write a Baby constructor subclassing Person.
@@ -101,9 +99,10 @@ function Baby(name, age, favoriteToy) {
   this.favoriteToy = favoriteToy;
 };
 Baby.prototype = Object.create(Person.prototype);
-Baby.prototype.play = function () {
+Baby.prototype.play = function() {
   return `Playing with ${this.favoriteToy}`;
-};
+}
+
 
 /* 
   TASK 4
